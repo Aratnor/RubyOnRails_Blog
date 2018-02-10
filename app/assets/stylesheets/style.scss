@@ -1,0 +1,43 @@
+
+#logo{
+
+	float:left;
+	font-size: 1.4em;
+	color: black;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+#logo:hover{
+	text-decoration: none;
+
+}
+
+.center{
+	text-align: center;
+}
+
+.jumbotron{
+	background-image: asset-url("jumbotron-bg");
+	background-size: cover;
+	height: 550px;
+
+	h1{
+		color:white;
+		text-align: center;
+		margin-bottom: 30px;
+		letter-spacing: -1px;
+		font-weight: bold;
+	}
+	.btn-xlarge{
+		font-size: 1.7em;
+
+	}
+}
+
+footer{
+	ul{
+		list-style-type: none;
+	}
+
+}
