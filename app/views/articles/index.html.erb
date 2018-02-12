@@ -1,20 +1,9 @@
 <h1 align="center">Listing articles </h1>
+<div class="center">
+	<%= will_paginate  %>
+</div>
+<%= render 'article', obj: @articles %>
+<div class="center">
+	<%= will_paginate  %>
+</div>
 
-<% @articles.each do |article| %>
-	<div class="col-md-8 col-md-offset-2">
-		<div class="well well-lg">
-			<div class="article-title">
-				<%= link_to article.title, article_path(article) %>
-			</div>
-			<div class="article-body">
-				<%= truncate(article.description, lenght: 100)  %>
-			</div>
-				<div class="article-actions">
-					<%= link_to "Edit the article", edit_article_path(article), class:"btn btn-md btn-primary" %>
-					<%= link_to "Delete the artilce", article_path(article), method: :delete, data: {confirm: "Are u sure?"},
-			class:"btn btn-md btn-danger"  %>
-				</div>
-		</div>
-	</div>
-<%  end %>
-</table>

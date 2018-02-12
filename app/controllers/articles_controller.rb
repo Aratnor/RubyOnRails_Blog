@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
 
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page:5)
   end
 
   def new
@@ -9,12 +10,12 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
     #render plain: params[:article].inspect
     @article = Article.new(article_params)
+    @article.user = User.first
     #@article.save
     if @article.save
       flash[:success] = "Article saved!"
@@ -25,7 +26,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:success] = "Article updated"
       redirect_to articles_path(@article)
@@ -35,11 +35,9 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:danger] =" Article deleted"
     redirect_to articles_path(@article)    
@@ -48,5 +46,8 @@ class ArticlesController < ApplicationController
   private
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+  def set_article
+    @article = Article.find(params[:id])
   end
 end
