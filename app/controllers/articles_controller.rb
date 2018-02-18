@@ -5,12 +5,16 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.paginate(page: params[:page], per_page:5)
+    if (params[:search])
+      @articles = Article.search(params[:search])
+    else
+      @articles = Article.all
+    end
   end
 
   def new
     @article = Article.new
-  end
+  end 
 
   def edit
   end
@@ -48,7 +52,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:search,:title, :description, category_ids: [])
   end
   def set_article
     @article = Article.find(params[:id])
@@ -56,7 +60,7 @@ class ArticlesController < ApplicationController
 
   def require_same_user
 
-  if current_user != @article.user
+  if (current_user != @article.user and !current_user.admin?)
     flash[:danger] = "You must log in "
     redirect_to root_path 
   end
