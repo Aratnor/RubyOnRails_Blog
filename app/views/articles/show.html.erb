@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/path/to/styles/default.css">
+<script src="/path/to/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <h2 align="center"> Title: <%= @article.title%> </h2>
 <div class="well col-md-8 col-md-offset-2">
 	<ul class="listing">
@@ -15,7 +18,7 @@
 		<% end %>
 	<h4 class="center description"><strong>Description</strong></h4>
 	<hr>
-	<%= simple_format(@article.description) %>	
+	<%= markdown(@article.description) %>
 	<% if @article.categories.any? %>
 		<p>Categories:	<%= render @article.categories %></p>
 	<% end %>
@@ -27,5 +30,7 @@
 		<% end %>
 		<%= link_to "Back to article listing", articles_path, class:"btn btn-md btn-success" %>
 	</div>
+	<%= render '/comments/new', %>
+	<%= render '/comments/index'%>
 </div>
 

@@ -1,3 +1,4 @@
+
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:edit, :update, :show, :destroy]
@@ -42,6 +43,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comments =@article.comments
   end
 
   def destroy

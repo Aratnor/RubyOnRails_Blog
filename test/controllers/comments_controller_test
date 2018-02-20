@@ -1,0 +1,7 @@
+require 'test-helper'
+
+class CommentsControllerTest < ActionDispatch::IntegrationTest
+	def setup
+		@comment =Comment.new(comment: "Comment",user_id: 1,article_id:3);
+	end
+end

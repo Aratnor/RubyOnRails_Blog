@@ -22,9 +22,12 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-offset-2 col-md-8">
-                    <%= f.collection_check_boxes :category_ids,Category.all,:id,:name do |cb|%>
-                        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") +cb.text} %>
-                    <% end %>
+                    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+                    <%= b.label class:"btn btn-default check-btn" do%>
+                        <%=b.check_box(class:"badgebox") + b.text %>
+                        <span class="badge" style="margin-left: 5px">&check;</span>
+                    <%end%>
+                <% end %>
                 </div>
             </div>
         </div>  

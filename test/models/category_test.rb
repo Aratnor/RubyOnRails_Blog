@@ -16,10 +16,6 @@ class CategoryTest < ActiveSupport::TestCase
 		category1= Category.new(name: "sport")
 		assert_not category1.valid?
 	end
-	test "Name should not be short" do
-		@category.name = "a" 
-		assert_not @category.valid?
-	end
 	test "Name should not be long" do
 		@category.name = "a" * 26
 		assert_not @category.valid?
