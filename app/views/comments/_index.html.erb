@@ -1,27 +1,25 @@
-
-<% @comments.each do |comment| %>
-	<div class="col-md-8 col-md-offset-2">
-		<div class="well well-lg">
-			<div class="article-title">
-				<h1><%= link_to @user.title, article_path(article) %></h1>
-				<small class="text-right">Created by: <%= article.user.username if article.user%>,
-						<%= time_ago_in_words(article.created_at)%> ago, 
-						last updated: <%= time_ago_in_words(article.updated_at)%> ago</small>
+<% article.comments.order('created_at DESC').each do |comment| %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2" align="right">
+				<div class="row">
+					<%= link_to gravatar_for(article.user, size: 40) , user_path(article.user) %> 
+				</div>
 			</div>
-			<div class="Comment:">
-				<% if comments.comment.any? %>
-				<%= comment.comment  %>
-				<% end %>
-			</div>
-			<% if logged_in? %>
-				<% if current_user == article.user || current_user.admin?%>
-					<div class="article-actions">
-						<%= link_to "Edit the comment", edit_comment_path(comment), class:"btn btn-md btn-primary" %>
-						<%= link_to "Delete the comment", article_path(article), method: :delete, data: {confirm: "Are u sure?"},
-				class:"btn btn-md btn-danger"  %>
+			<div class="col-md-8">
+				<div class="well well-lg">				
+					<div class="Comment:">
+						<% if comment.comment? %>
+							<div class="row">
+								<div class="col-md-12" style="word-wrap: break-word;">
+									<%= link_to(User.find(comment.user_id).username, user_path(User.find(comment.user_id).id)) %>
+									<%= simple_format(comment.comment)  %>
+								</div>
+							</div>	
+						<% end %>
 					</div>
-				<% end %>
-			<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 <%  end %>

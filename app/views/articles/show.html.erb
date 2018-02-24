@@ -30,7 +30,7 @@
 		<% end %>
 		<%= link_to "Back to article listing", articles_path, class:"btn btn-md btn-success" %>
 	</div>
-	<%= render '/comments/new', %>
-	<%= render '/comments/index'%>
+	<%= render '/comments/new',article_id: @article.id%>
+	<%= render '/comments/index',article: @article%>
 </div>
 

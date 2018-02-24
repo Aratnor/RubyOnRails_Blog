@@ -1,18 +1,17 @@
 class CommentsController < ApplicationController
 	def index
-		@comments = Article.find(params[:article_id]).comments
-		@user = User.find(params[:user_id])
+
 	end
   	def new
     	@comment = Comment.new
   	end 
   	def create
   		@comment = Comment.new(comment_params)
-  		@comment_user = current_user
-  		@article_id
+  		@comment.user_id= current_user.id
+  		@comment.article_id = params[:article_id]
   		    if @comment.save
-	     flash[:success] = "Article saved!"
-	     redirect_to articles_path(@article)
+	     flash[:success] = "Comment saved!"
+	     redirect_to article_path(params[:article_id])
 	    	else
 	      render '_new'
 	  end
