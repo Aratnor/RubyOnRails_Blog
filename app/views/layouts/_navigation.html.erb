@@ -32,7 +32,7 @@
       </ul>
       <%= form_tag articles_path, method: :get,class: "navbar-form navbar-left" do %>
        <%= text_field_tag :search,params[:search],class: "form-control", placeholder: "Search" %>
-      <%= submit_tag 'Search',name: nil %>
+      <%= submit_tag 'Search',name: nil, class:"btn btn-default btn-md" %>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
