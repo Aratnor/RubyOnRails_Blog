@@ -3,8 +3,7 @@ class CategoriesController < ApplicationController
 	def index
 		@categories = Category.paginate(page: params[:page],per_page: 5)
 	end
-	def show
-	end
+	
 	def new 
 		@category = Category.new
 	end
@@ -17,6 +16,9 @@ class CategoriesController < ApplicationController
 			render 'new'
 		end
 	end
+	def show
+		@articles = Category.find(params[:id]).articles
+	end
 	private
 	def category_params
 		params.require(:category).permit(:name)
@@ -25,6 +27,6 @@ class CategoriesController < ApplicationController
 		if !logged_in? || (logged_in? and !current_user.admin?)
 			flash[:danger] ="Only admin can perform that action"
 			redirect_to categories_path
+		end
 	end
-end
 end
