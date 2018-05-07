@@ -8,7 +8,7 @@
 						last updated: <%= time_ago_in_words(article.updated_at)%> ago</small>
 			</div>
 			<div class="article-body">
-				<%= truncate(article.description, lenght: 500)  %>
+				<%= truncate(article.description, lenght: 1000)  %>
 			</div>
 			<% if article.categories.any? %>
 				<p><%= render article.categories %></p>
