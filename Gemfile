@@ -19,7 +19,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'redcarpet'
 gem 'coderay'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
